@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  title: App1 REST API
+  version: 1.0.0
+  description: App1 REST API
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /send_message_prod:
+    post:
+      tags:
+        - Ping app2 prod
+      operationId: app1.apis.apis.send_message_prod
+      summary: Send message to app2 prod
+      parameters:
+        - $ref: '#/parameters/api_body'
+      responses:
+        '200':
+          $ref: '#responses/json_response'
+        '400':
+          description: Processing error
+        '403':
+          description: Invalid parameters
+
+  /send_message_test:
+    post:
+      tags:
+        - Ping app2 test
+      operationId: app1.apis.apis.send_message_test
+      summary: Send message to app2 test
+      parameters:
+        - $ref: '#/parameters/api_body'
+      responses:
+        '200':
+          $ref: '#responses/json_response'
+        '400':
+          description: Processing error
+        '403':
+          description: Invalid parameters
+
+  /send_message_dev:
+    post:
+      tags:
+        - Ping app2 dev
+      operationId: app1.apis.apis.send_message_dev
+      summary: Send message to app2 dev
+      parameters:
+        - $ref: '#/parameters/api_body'
+      responses:
+        '200':
+          $ref: '#responses/json_response'
+        '400':
+          description: Processing error
+        '403':
+          description: Invalid parameters
+
+parameters:
+  api_body:
+    name: api_body
+    in: body
+    description: JSON object of the message
+    required: true
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          default: hello
+
+responses:
+  json_response:
+    description: Return result in JSON format
+    schema:
+      type: object
